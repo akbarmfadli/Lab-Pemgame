@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class HUDManager : MonoBehaviour
 {
     public Image currentEnergy;
+    [SerializeField] GameObject pauseMenu;
+    public static bool GameisPaused = false;
 
     private GameObject player;
 
@@ -15,6 +17,7 @@ public class HUDManager : MonoBehaviour
     private float kecepatanLari;
     private float input_x;
     private float input_z;
+   
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +35,7 @@ public class HUDManager : MonoBehaviour
 
         EnergyDrain();
         UpdateEnergy();
+        ShowPauseMenu();
     }
 
     private void EnergyDrain()
@@ -59,5 +63,34 @@ public class HUDManager : MonoBehaviour
     {
         float ratio = energy / maxEnergy;
         currentEnergy.rectTransform.localScale = new Vector3(ratio, 1, 1);
+    }
+
+    private void ShowPauseMenu()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (GameisPaused)
+            {
+                Resume();
+            }
+            else
+            {
+                Pause();
+            }
+        }
+    }
+
+    public void Resume()
+    {
+        pauseMenu.SetActive(false);
+        GameisPaused = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    void Pause()
+    {
+        pauseMenu.SetActive(true);
+        GameisPaused = true;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 }
