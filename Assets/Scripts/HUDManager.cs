@@ -8,6 +8,9 @@ public class HUDManager : MonoBehaviour
     public Image currentEnergy;
     [SerializeField] GameObject pauseMenu;
     public static bool GameisPaused = false;
+    public Player playerInstance;
+
+    
 
     private GameObject player;
 
@@ -32,10 +35,12 @@ public class HUDManager : MonoBehaviour
         kecepatan = player.GetComponent<pergerakan>().kecepatan;
         input_x = player.GetComponent<pergerakan>().x;
         input_z = player.GetComponent<pergerakan>().z;
+     
 
         EnergyDrain();
         UpdateEnergy();
         ShowPauseMenu();
+        
     }
 
     private void EnergyDrain()
@@ -93,4 +98,11 @@ public class HUDManager : MonoBehaviour
         GameisPaused = true;
         Cursor.lockState = CursorLockMode.Confined;
     }
+
+    public void SaveGame()
+    {
+        SaveSystem.SavePlayer(playerInstance);
+    }
+
+ 
 }

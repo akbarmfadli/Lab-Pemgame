@@ -19,6 +19,8 @@ public class pergerakan : MonoBehaviour
     public bool isGrounded;
     Vector3 velocity;
 
+    private Animator anim;
+
     //reference
     private CharacterController controller;
 
@@ -35,6 +37,8 @@ public class pergerakan : MonoBehaviour
         bergerak();
         lompat();
         jalan();
+
+       
     }
 
     private void bergerak()
@@ -80,4 +84,6 @@ public class pergerakan : MonoBehaviour
             kecepatan = speed_lari;
         }
     }
+
+   
 }
