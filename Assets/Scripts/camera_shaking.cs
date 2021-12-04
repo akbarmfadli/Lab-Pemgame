@@ -45,5 +45,13 @@ public class camera_shaking : MonoBehaviour
         {
             shouldShake = true;
         }
+        if (other.tag == "Enemy")
+        {
+            shouldShake = true;
+        }
+        if (other.tag == "Flame")
+        {
+            shouldShake = true;
+        }
     }
 }
